@@ -1,0 +1,11 @@
+.git
+.kpt-pipeline
+.theia
+.venv
+cloudbuild
+cloudrun
+scripts
+
+src/.env*
+src/db.sqlite3
+*.md

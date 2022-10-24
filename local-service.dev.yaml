@@ -1,0 +1,25 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: website-local
+spec:
+  template:
+    spec:
+      containers:
+      - image:  web-django
+        env:
+        - name: DJANGO_LOG_LEVEL
+          value: DEBUG
+        - name: DJANGO_MANAGEPY_COLLECTSTATIC
+          value: "true"
+        - name: DJANGO_MANAGEPY_MIGRATE
+          value: "true"
+        - name: LOCAL_DEV
+          value: "true"
+        ports:
+        - name: http1
+          containerPort: 8080
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 512Mi

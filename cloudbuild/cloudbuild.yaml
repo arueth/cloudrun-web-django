@@ -1,0 +1,11 @@
+---
+logsBucket: "gs://${PROJECT_ID}/logs/cloudbuild"
+tags:
+  - build
+steps:
+  - name: "gcr.io/kaniko-project/executor:v1.8.1-slim"
+    id: "build-image"
+    args:
+    - --destination=${_AR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/web/django:${SHORT_SHA}
+    - --cache=true
+    - --cache-ttl=12h
